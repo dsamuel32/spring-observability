@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: observability
+
+info:
+  app:
+    name: ${spring.application.name}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+      base-path: /
