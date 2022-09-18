@@ -2,13 +2,21 @@ spring:
   application:
     name: observability
 
+server:
+  port: 8080
+
 info:
   app:
     name: ${spring.application.name}
 
 management:
+  health:
+    diskspace:
+      enabled: false
+  endpoint:
+    health:
+      show-details: always
   endpoints:
     web:
       exposure:
-        include: health, info
-      base-path: /
+        include: '*'
