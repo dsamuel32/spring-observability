@@ -21,6 +21,7 @@ public class HomeController {
     @ResponseStatus(HttpStatus.OK)
     public HomeResponse getHomeInfo() {
         //https://www.baeldung.com/java-application-logs-to-elastic-stack
+        //https://ridwanfajar.medium.com/send-your-container-logs-to-elk-elasticsearch-logstash-and-kibana-with-gelf-driver-7995714fbbad
         log.info("Getting info");
         return new HomeResponse("Running...");
     }
