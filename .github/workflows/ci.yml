@@ -31,4 +31,6 @@ jobs:
           distribution: 'adopt'
       # 3. Executar os testes da aplicação
       - name: Run application tests
-        run: chmod +x ./spotify-consumer-api/mvnw test
+        run: |
+          chmod +x ./spotify-consumer-api/mvnw
+          ./spotify-consumer-api/mvnw test
