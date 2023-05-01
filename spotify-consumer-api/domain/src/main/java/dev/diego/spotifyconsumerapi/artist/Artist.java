@@ -6,10 +6,7 @@ import dev.diego.spotifyconsumerapi.exceptions.DomainException;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @ToString
@@ -24,7 +21,8 @@ public class Artist extends AggregateRoot<Id> {
     private final Set<String> genres;
     private final Set<Image> images;
 
-    protected Artist(
+    private Artist(
+            final Id id,
             final String name,
             final Long followers,
             final Long popularity,
@@ -32,7 +30,7 @@ public class Artist extends AggregateRoot<Id> {
             final Set<String> genres,
             final Set<Image> images) {
 
-        super(Id.unique());
+        super(id);
         this.name = name;
         this.followers = followers;
         this.popularity = popularity;
@@ -40,6 +38,16 @@ public class Artist extends AggregateRoot<Id> {
         this.genres = genres;
         this.images = images;
         this.validate();
+    }
+
+    public static Artist with(final String name,
+                       final Long followers,
+                       final Long popularity,
+                       final String uri,
+                       final Set<String> genres,
+                       final Set<Image> images) {
+        final var id = Id.unique();
+        return new Artist(id, name, followers, popularity, uri, genres, images);
     }
 
     private void validate() {
@@ -69,7 +77,11 @@ public class Artist extends AggregateRoot<Id> {
     private List<String> notEmpty(final String name, final String value) {
         final var errors = notNull(name, value);
 
-        if (value.length() == ZERO) {
+        final var field = Optional.ofNullable(value)
+                .map(String::trim)
+                .orElse("");
+
+        if (field.length() == ZERO) {
             final var error = "'%s' should not be empty".formatted(name);
             errors.add(error);
         }
