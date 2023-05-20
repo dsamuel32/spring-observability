@@ -19,8 +19,8 @@ public class Search {
 
     public static Search with(final String artistName, final Integer itemsPerPage, final Integer pageNumber) {
 
-        final var page = getDefaultValuePageNumber(pageNumber);
         final var perPage = getDefaultValueItemsPerPage(itemsPerPage);
+        final var page = getDefaultValuePageNumber(pageNumber, perPage);
 
         return new Search(artistName, perPage, page);
     }
@@ -31,9 +31,10 @@ public class Search {
                 .orElse(ONE_HUNDRED);
     }
 
-    private static Integer getDefaultValuePageNumber(final Integer pageNumber) {
+    private static Integer getDefaultValuePageNumber(final Integer pageNumber, final Integer perPage) {
         return Optional.ofNullable(pageNumber)
                 .filter(isEqualsMoreThenZero())
+                .map(it -> it * perPage)
                 .orElse(ZERO);
     }
 
