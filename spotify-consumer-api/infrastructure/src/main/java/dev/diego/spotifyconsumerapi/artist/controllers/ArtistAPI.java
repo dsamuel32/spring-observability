@@ -1,11 +1,10 @@
-package dev.diego.spotifyconsumerapi.controllers.artist;
+package dev.diego.spotifyconsumerapi.artist.controllers;
 
-import dev.diego.spotifyconsumerapi.controllers.artist.response.PageableArtistResponse;
+import dev.diego.spotifyconsumerapi.artist.controllers.response.PageableArtistResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
