@@ -8,7 +8,8 @@ public record ArtistOutput(
         String name,
         Long followers,
         Long popularity,
-        String uri,
+        String deepLink,
+        String url,
         Set<String> genres,
         Set<ImageOutput> images
 ) {
@@ -23,7 +24,8 @@ public record ArtistOutput(
                 artist.getName(),
                 artist.getFollowers(),
                 artist.getPopularity(),
-                artist.getUri(),
+                artist.getDeepLink(),
+                artist.getUrl(),
                 artist.getGenres(),
                 images
         );

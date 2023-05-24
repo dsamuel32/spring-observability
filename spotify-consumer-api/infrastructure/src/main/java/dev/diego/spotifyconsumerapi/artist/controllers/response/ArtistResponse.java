@@ -19,7 +19,10 @@ public record ArtistResponse(
         Long popularity,
 
         @Schema(description = "Deep link Spotfy app", example = "spoty:deeplink")
-        String uri,
+        String deepLink,
+
+        @Schema(description = "Url Spotfy site", example = "http://api/spotify.com")
+        String url,
         @Schema(description = "Artist music genres", example = "Rock")
         Set<String> genres,
         @Schema(description = "Album images")
@@ -36,7 +39,8 @@ public record ArtistResponse(
                 artist.name(),
                 artist.followers(),
                 artist.popularity(),
-                artist.uri(),
+                artist.deepLink(),
+                artist.url(),
                 artist.genres(),
                 images
         );

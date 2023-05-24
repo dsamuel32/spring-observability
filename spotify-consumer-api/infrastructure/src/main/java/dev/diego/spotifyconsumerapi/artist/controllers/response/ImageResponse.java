@@ -6,7 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public record ImageResponse(
         @Schema(description = "Image height", example = "640")
         Integer height,
-        @Schema(description = "Image uri", example = "https://somelinkimage.com")
+        @Schema(description = "Image deepLink", example = "https://somelinkimage.com")
         String uri,
         @Schema(description = "Image wight", example = "640")
         Integer wight

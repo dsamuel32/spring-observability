@@ -18,15 +18,17 @@ class ArtistTest {
                 "'name' should not be empty",
                 "'followers' should not be null",
                 "'popularity' should not be null",
-                "'uri' should not be null",
-                "'uri' should not be empty",
+                "'deepLink' should not be null",
+                "'deepLink' should not be empty",
+                "'url' should not be null",
+                "'url' should not be empty",
                 "'genres' should not be null",
                 "'images' should not be null"
         );
 
         final var result = assertThrows(
                 DomainException.class,
-                () -> Artist.with(null, null, null, null, null, null));
+                () -> Artist.with(null, null, null,null, null, null, null, null));
 
         assertEquals(expectedMessage, result.getMessage());
         assertEquals(sort(expectedInvalidFields), sort(result.getErrors()));
@@ -39,14 +41,15 @@ class ArtistTest {
                 "'name' should not be empty",
                 "'followers' should not be null",
                 "'popularity' should not be null",
-                "'uri' should not be empty",
+                "'deepLink' should not be empty",
+                "'url' should not be empty",
                 "'genres' should not be null",
                 "'images' should not be null"
         );
 
         final var result = assertThrows(
                 DomainException.class,
-                () -> Artist.with("      ", null, null, "", null, null));
+                () -> Artist.with(null,"      ", null, null,"", "", null, null));
 
         assertEquals(expectedMessage, result.getMessage());
         assertEquals(sort(expectedInvalidFields), sort(result.getErrors()));

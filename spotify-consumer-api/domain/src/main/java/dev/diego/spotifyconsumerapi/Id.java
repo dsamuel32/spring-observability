@@ -21,8 +21,8 @@ public class Id extends Identifier {
         return value;
     }
 
-    public static Id from(final String anId) {
-        return new Id(anId.toLowerCase());
+    public static Id from(final String id) {
+        return new Id(id.toLowerCase());
     }
     public static Id unique() {
         final var id = UUID.randomUUID().toString().toLowerCase();

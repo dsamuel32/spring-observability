@@ -67,9 +67,9 @@ class SearchArtistUseCaseTest {
                 "band 1",
                 1000L,
                 10L,
-                "spotfy:fake.uri",
+                "spotfy:fake.deepLink",
                 Set.of("Rock", "Metal"),
-                Set.of(Image.with(10, "spotfy:fake.uri", 10))
+                Set.of(Image.with(10, "spotfy:fake.deepLink", 10))
         );
     }
 
