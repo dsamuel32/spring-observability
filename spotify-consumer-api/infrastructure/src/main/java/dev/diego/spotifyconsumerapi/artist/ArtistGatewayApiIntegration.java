@@ -2,7 +2,7 @@ package dev.diego.spotifyconsumerapi.artist;
 
 import dev.diego.spotifyconsumerapi.Pageable;
 import dev.diego.spotifyconsumerapi.Search;
-import dev.diego.spotifyconsumerapi.infra.clients.SpotifyArtistClient;
+import dev.diego.spotifyconsumerapi.infra.clients.SpotifyArtistSearchClient;
 import dev.diego.spotifyconsumerapi.infra.clients.response.ArtistResponse;
 import dev.diego.spotifyconsumerapi.infra.clients.response.ExternalUrlResponse;
 import dev.diego.spotifyconsumerapi.infra.clients.response.FollowersResponse;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ArtistGatewayApiIntegration implements ArtistGateway {
 
-    private final SpotifyArtistClient client;
+    private final SpotifyArtistSearchClient client;
     @Override
     public Pageable<Artist> search(final Search search) {
         final var response = client.search(

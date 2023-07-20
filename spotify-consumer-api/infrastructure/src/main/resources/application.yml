@@ -13,9 +13,11 @@ integrations:
   spotify:
     authentication:
       url: https://accounts.spotify.com/api/token
-      client-id: ewe
-      client-secret: fad
-    search:
+      client-id: ${CLIENT_ID}
+      client-secret: ${CLIENT_SECRET}
+      path:
+        authorize: /authorize
+    api:
       url: https://api.spotify.com
       paths:
-        artists: /v1/artists
+        search: /v1/search
