@@ -24,7 +24,6 @@ public class ArtistGatewayApiIntegration implements ArtistGateway {
     @Override
     public Pageable<Artist> search(final Search search) {
         final var response = client.search(
-                "",
                 search.getArtistName(),
                 "artist",
                 "BR",

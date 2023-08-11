@@ -12,12 +12,14 @@ server:
 integrations:
   spotify:
     authentication:
-      url: https://accounts.spotify.com/api/token
+      url: https://accounts.spotify.com/api
       client-id: ${CLIENT_ID}
       client-secret: ${CLIENT_SECRET}
       path:
-        authorize: /authorize
+        token: /token
     api:
       url: https://api.spotify.com
       paths:
         search: /v1/search
+
+
