@@ -14,15 +14,15 @@ public class Image implements ValueObject {
 
     private final Integer height;
     private final String uri;
-    private final String wight;
+    private final Integer wight;
 
-    private Image(Integer height, String uri, String wight) {
+    private Image(Integer height, String uri, Integer wight) {
         this.height = Objects.requireNonNull(height, "'height' should not be null");
         this.uri = Objects.requireNonNull(uri, "'uri' should not be null");
         this.wight = Objects.requireNonNull(wight, "'wight' should not be null");
     }
 
-    public static Image with(final Integer height, final String uri, final String wight) {
+    public static Image with(final Integer height, final String uri, final Integer wight) {
         return new Image(height, uri, wight);
     }
 

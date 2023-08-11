@@ -17,7 +17,8 @@ public class Artist extends AggregateRoot<Id> {
     private final String name;
     private final Long followers;
     private final Long popularity;
-    private final String uri;
+    private final String deepLink;
+    private final String url;
     private final Set<String> genres;
     private final Set<Image> images;
 
@@ -26,28 +27,31 @@ public class Artist extends AggregateRoot<Id> {
             final String name,
             final Long followers,
             final Long popularity,
-            final String uri,
+            final String deepLink,
+            final String url,
             final Set<String> genres,
             final Set<Image> images) {
-
         super(id);
         this.name = name;
         this.followers = followers;
         this.popularity = popularity;
-        this.uri = uri;
+        this.deepLink = deepLink;
+        this.url = url;
         this.genres = genres;
         this.images = images;
         this.validate();
     }
 
-    public static Artist with(final String name,
-                       final Long followers,
-                       final Long popularity,
-                       final String uri,
-                       final Set<String> genres,
-                       final Set<Image> images) {
-        final var id = Id.unique();
-        return new Artist(id, name, followers, popularity, uri, genres, images);
+    public static Artist with(final String id,
+                              final String name,
+                              final Long followers,
+                              final Long popularity,
+                              final String deepLink,
+                              final String url,
+                              final Set<String> genres,
+                              final Set<Image> images) {
+        final var idValue = id != null ? Id.from(id) : Id.unique();
+        return new Artist(idValue, name, followers, popularity, deepLink, url, genres, images);
     }
 
     private void validate() {
@@ -65,7 +69,8 @@ public class Artist extends AggregateRoot<Id> {
         errors.addAll(notEmpty("name", this.name));
         errors.addAll(notNull("followers", this.followers));
         errors.addAll(notNull("popularity", this.popularity));
-        errors.addAll(notEmpty("uri", this.uri));
+        errors.addAll(notEmpty("deepLink", this.deepLink));
+        errors.addAll(notEmpty("url", this.url));
         errors.addAll(notNull("genres", this.genres));
         errors.addAll(notNull("images", this.images));
 
