@@ -12,22 +12,26 @@ class SearchTest {
         final var name = "band 1";
         final var itemsPerPage = 10;
         final var pageNumber = 0;
+        final var offset = 0;
 
         assertEquals(name, result.getArtistName());
         assertEquals(itemsPerPage, result.getItemsPerPage());
         assertEquals(pageNumber, result.getPageNumber());
+        assertEquals(offset, result.getOffset());
     }
     @Test
     void given_nullItemsPerPageAndNullPageNumber_returnSearchWithDefaultValues() {
         final var result = Search.with("band 1", null, null);
 
         final var name = "band 1";
-        final var itemsPerPage = 100;
+        final var itemsPerPage = 50;
         final var pageNumber = 0;
+        final var offset = 0;
 
         assertEquals(name, result.getArtistName());
         assertEquals(itemsPerPage, result.getItemsPerPage());
         assertEquals(pageNumber, result.getPageNumber());
+        assertEquals(offset, result.getOffset());
     }
 
     @Test
@@ -35,22 +39,27 @@ class SearchTest {
         final var result = Search.with("band 1", 10, 1);
         final var name = "band 1";
         final var itemsPerPage = 10;
-        final var pageNumber = 10;
+        final var pageNumber = 1;
+        final var offset = 20;
         assertEquals(name, result.getArtistName());
         assertEquals(itemsPerPage, result.getItemsPerPage());
         assertEquals(pageNumber, result.getPageNumber());
+        assertEquals(offset, result.getOffset());
     }
 
     @Test
     void given_NegativeItemsPerPageAndNegativePageNumber_returnSearchWithDefaultValues() {
         final var result = Search.with("band 1", -2, -1);
         final var name = "band 1";
-        final var itemsPerPage = 100;
+        final var itemsPerPage = 50;
         final var pageNumber = 0;
+        final var offset = 0;
 
         assertEquals(name, result.getArtistName());
         assertEquals(itemsPerPage, result.getItemsPerPage());
         assertEquals(pageNumber, result.getPageNumber());
+        assertEquals(pageNumber, result.getPageNumber());
+        assertEquals(offset, result.getOffset());
     }
 
 }

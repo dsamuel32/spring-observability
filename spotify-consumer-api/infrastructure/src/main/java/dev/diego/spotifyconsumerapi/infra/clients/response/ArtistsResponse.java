@@ -12,6 +12,6 @@ public record ArtistsResponse(
         @JsonProperty("total")
         Integer total,
         @JsonProperty("items")
-        List<ArtistResponse>artists
+        List<ArtistResponse> artists
 ) {
 }

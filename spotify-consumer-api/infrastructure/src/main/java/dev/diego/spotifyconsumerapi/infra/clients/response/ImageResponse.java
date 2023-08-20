@@ -6,9 +6,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public record ImageResponse(
         @JsonProperty("height")
         Integer height,
-        @JsonProperty("uri")
-        String uri,
-        @JsonProperty("height")
-        Integer wight
+        @JsonProperty("url")
+        String url,
+        @JsonProperty("width")
+        Integer width
 ) {
 }

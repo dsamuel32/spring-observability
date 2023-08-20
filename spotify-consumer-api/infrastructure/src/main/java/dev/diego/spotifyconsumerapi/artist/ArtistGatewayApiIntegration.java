@@ -23,19 +23,22 @@ public class ArtistGatewayApiIntegration implements ArtistGateway {
     private final SpotifyArtistSearchClient client;
     @Override
     public Pageable<Artist> search(final Search search) {
+
         final var response = client.search(
                 search.getArtistName(),
                 "artist",
                 "BR",
                 search.getItemsPerPage(),
-                search.getPageNumber()
+                search.getOffset()
         );
 
-        final var artists = response.artists().stream()
+        final var artistsResponse = response.artists();
+
+        final var artists = artistsResponse.artists().stream()
                 .map(this::mapArtist)
                 .toList();
 
-        return Pageable.with(artists, response.limit(), response.offset(), response.total());
+        return Pageable.with(artists, search.getItemsPerPage(), search.getPageNumber(), artistsResponse.total());
     }
 
     private Artist mapArtist(final ArtistResponse artist) {
@@ -80,6 +83,6 @@ public class ArtistGatewayApiIntegration implements ArtistGateway {
     }
 
     private Image mapImage(final ImageResponse image) {
-        return Image.with(image.height(), image.uri(), image.wight());
+        return Image.with(image.height(), image.url(), image.width());
     }
 }
