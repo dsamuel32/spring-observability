@@ -2,7 +2,9 @@ package dev.diego.spotifyconsumerapi.infra.clients;
 
 import dev.diego.spotifyconsumerapi.infra.clients.config.FeignConfig;
 import dev.diego.spotifyconsumerapi.infra.clients.response.ArtistsResponse;
+import dev.diego.spotifyconsumerapi.infra.clients.response.SpotifyArtistResponse;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,11 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 )
 public interface SpotifyArtistSearchClient {
 
-
-    //market br
-    //market type artist
-    @GetMapping("${integrations.spotify.api.url.paths.search}")
-    ArtistsResponse search(
+    @GetMapping(value = "${integrations.spotify.api.paths.search}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    SpotifyArtistResponse search(
             @RequestParam("q") final String name,
             @RequestParam("type") final String type,
             @RequestParam("market") final String market,

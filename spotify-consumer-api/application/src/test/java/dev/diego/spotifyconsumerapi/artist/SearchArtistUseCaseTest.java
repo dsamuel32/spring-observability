@@ -31,14 +31,14 @@ class SearchArtistUseCaseTest {
     @Test
     void given_aSearchInputWithArtistNameField_returnPageableArtistEmpty() {
 
-        when(gateway.search(any(Search.class))).thenReturn(Pageable.with(Collections.emptyList(), 1, 0, 0));
+        when(gateway.search(any(Search.class))).thenReturn(Pageable.with(Collections.emptyList(), 50, 0, 0));
         final var input = SearchArtistInput.with("band 1", null, null);
         final var result = useCase.execute(input);
 
-        final var expected = Pageable.with(Collections.emptyList(), 1, 0, 0);
+        final var expected = Pageable.with(Collections.emptyList(), 50, 0, 0);
 
         assertEquals(expected, result);
-        verify(gateway).search(Search.with("band 1", 100, 0));
+        verify(gateway).search(Search.with("band 1", 50, 0));
 
     }
 
@@ -64,10 +64,12 @@ class SearchArtistUseCaseTest {
 
     private Artist createArtist() {
         return Artist.with(
+                "1",
                 "band 1",
                 1000L,
                 10L,
                 "spotfy:fake.deepLink",
+                "http://fake.com",
                 Set.of("Rock", "Metal"),
                 Set.of(Image.with(10, "spotfy:fake.deepLink", 10))
         );
