@@ -46,4 +46,5 @@ hs_err_pid*
 
 ### VS Code ###
 *.vscode/
+docker-compose-dev.yml
 
