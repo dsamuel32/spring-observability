@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  spotify:
+    container_name: spotify-api
+    image: dsamuel32/spring-observability:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - 8080:8080
+    networks:
+      - elastic
+    depends_on:
+      - filebeat
+    labels:
+      filebeat_collector: true
+
+  filebeat:
+    container_name: spotify-api_filebeat
+    image: docker.elastic.co/beats/filebeat:7.17.9
+    volumes:
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro           # Docker logs
+      - /var/run/docker.sock:/var/run/docker.sock:ro                       # Additional information about containers
+      - ./filebeat/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml:ro # Configuration file
+      - ../.docker/filebeat:/usr/share/filebeat/data:rw                    # Persistence data
+    user: root                                                             # Allow access to log files and docker.sock
+    restart: on-failure
+    networks:
+      - elastic
+
+networks:
+  elastic:
+    external: true

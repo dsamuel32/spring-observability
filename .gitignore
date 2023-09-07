@@ -42,7 +42,7 @@ hs_err_pid*
 *.iws
 *.iml
 *.ipr
-
+*.docker
 
 ### VS Code ###
 *.vscode/

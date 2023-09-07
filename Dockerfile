@@ -11,4 +11,4 @@ COPY --from=build /build/infrastructure/target/*.jar /app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java" ,"-jar", "./app.jar"]
+ENTRYPOINT ["java" ,"-jar" "-Dspring.profiles.active=dev=prod", "./app.jar"]
