@@ -4,22 +4,19 @@ import dev.diego.spotifyconsumerapi.Pageable;
 import dev.diego.spotifyconsumerapi.Search;
 import dev.diego.spotifyconsumerapi.UseCase;
 import lombok.RequiredArgsConstructor;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
+@Slf4j
 public class SearchArtistUseCase implements UseCase<SearchArtistInput, Pageable<ArtistOutput>> {
-
-    private final Logger LOGGER = Logger.getLogger(SearchArtistUseCase.class.getName());
 
     private final ArtistGateway gateway;
     @Override
     public Pageable<ArtistOutput> execute(final SearchArtistInput input) {
-        LOGGER.log(Level.INFO, "[SEARCH ARTIST][START] - %s", input);
+        log.info("[SEARCH ARTIST][START] - {}", input);
         final var search = Search.with(input.artistName(), input.itemsPerPage(), input.pageNumber());
         final var result = gateway.search(search);
-        LOGGER.log(Level.INFO, "[SEARCH ARTIST][END] - Found: {}", result.getTotal());
+        log.info("[SEARCH ARTIST][END] - Found: {}", result.getTotal());
         return result.map(ArtistOutput::from);
     }
 
