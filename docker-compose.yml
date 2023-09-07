@@ -3,10 +3,15 @@ version: "3"
 services:
   spotify:
     container_name: spotify-api
-    #image: spotify-api:latest
-    build: .
+    image: dsamuel32/spring-observability:latest
     environment:
       CLIENT_ID: <client_id>
       CLIENT_SECRET: <client_secret>
     ports:
       - 8080:8080
+    networks:
+      - elastic
+
+networks:
+  elastic:
+    external: true
