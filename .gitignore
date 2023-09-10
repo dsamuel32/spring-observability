@@ -48,5 +48,5 @@ hs_err_pid*
 *.vscode/
 docker-compose-dev.yml
 
-*.env
+sandbox/app/.env
 
