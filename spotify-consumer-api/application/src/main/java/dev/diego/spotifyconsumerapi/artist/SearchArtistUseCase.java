@@ -13,10 +13,10 @@ public class SearchArtistUseCase implements UseCase<SearchArtistInput, Pageable<
     private final ArtistGateway gateway;
     @Override
     public Pageable<ArtistOutput> execute(final SearchArtistInput input) {
-        log.info("[SEARCH ARTIST][START] - {}", input);
+        log.info("[SEARCH ARTIST][START] - [message:{}]", input);
         final var search = Search.with(input.artistName(), input.itemsPerPage(), input.pageNumber());
         final var result = gateway.search(search);
-        log.info("[SEARCH ARTIST][END] - Found: {}", result.getTotal());
+        log.info("[SEARCH ARTIST][END] - Found: [result:{}]", result.getTotal());
         return result.map(ArtistOutput::from);
     }
 

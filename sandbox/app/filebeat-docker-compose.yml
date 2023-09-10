@@ -1,27 +1,11 @@
 version: "3"
 
 services:
-  spotify:
-    container_name: spotify-api
-    image: dsamuel32/spring-observability:latest
-    restart: unless-stopped
-    environment:
-      CLIENT_ID: 4b46d7fd1c2844c3b613810d2e219909
-      CLIENT_SECRET: 2090791b5937464bb6a385a8be07a8fc
-#    env_file:
-#      - .env
-    ports:
-      - 8080:8080
-    networks:
-      - elastic
-    depends_on:
-      - filebeat
-    labels:
-      filebeat_collector: true
 
   filebeat:
     container_name: spotify-api_filebeat
     image: docker.elastic.co/beats/filebeat:7.17.9
+    command: --strict.perms=false
     volumes:
       - /var/lib/docker/containers:/var/lib/docker/containers:ro           # Docker logs
       - /var/run/docker.sock:/var/run/docker.sock:ro                       # Additional information about containers
